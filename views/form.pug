@@ -1,0 +1,19 @@
+if errors 
+    h2.error Oooops! 
+    ul.error 
+        for error in errors 
+            li= error.message  
+p 
+    label(for="title") Title 
+    input(id='title', name='title', type='text' value=book.title)
+p 
+    label(for="title") Author 
+    input(id='author', name='author', type='text' value=book.author)
+p 
+    label(for="title") Genre
+    input(id='genre', name='genre', type='text' value=book.genre)
+p 
+    label(for="title") Year
+    input(id='year', name='year', type='text' value=book.year)
+p 
+    input(type='submit', value=`${button}`)

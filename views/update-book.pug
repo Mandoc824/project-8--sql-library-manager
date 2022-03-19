@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    form(action=`/books/${book.id}`, method='post') 
+        include form
+            p
+                a.button(href="/books") Cancel
+            p 
+                a.button(href=`/books/${book.id}/delete`) Delete Book
