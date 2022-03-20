@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const Book = require("../models").Book;
+const { Op } = require("../models").Sequelize;
 
 //Async handler
 const asyncHandler = (cb) => {
@@ -21,6 +22,34 @@ router.get(
   })
 );
 
+router.post(
+  "/",
+  asyncHandler(async (req, res, next) => {
+    const books = await Book.findAll({
+      where: {
+        title: {
+          [Op.substring]: req.body.title,
+        },
+      },
+      order: [["createdAt", "DESC"]],
+    });
+    console.log(books);
+    if (books.length > 0) {
+      res.render("results", {
+        books,
+        title: `Books matching "${req.body.title}":`,
+      });
+    } else {
+      const error = new Error(
+        "Sorry, the books matching your search were not found :("
+      );
+      res.render("results", {
+        error,
+        title: `Books matching "${req.body.title}":`,
+      });
+    }
+  })
+);
 router.get(
   "/new",
   asyncHandler(async (req, res, next) => {
@@ -114,6 +143,7 @@ router.get(
     }
   })
 );
+
 router.post(
   "/:id/delete",
   asyncHandler(async (req, res, next) => {

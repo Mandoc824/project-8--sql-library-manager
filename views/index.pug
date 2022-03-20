@@ -2,7 +2,11 @@ extends layout
 
 block content
     p
-      a.button(href="/books/new") Create New Book
+      a.button(href="/books/new") Create New Book 
+    form(action="/books", method="post")
+      p
+        input(type='text', name="title", placeholder="Search for Book")
+        input(type='submit', value='Search')
     table 
       thead 
         tr 

@@ -3,5 +3,5 @@ extends layout
 block content 
     form(method='post', action=`/books/${book.id}/delete`)
         h1 Do you really want to delete #{book.title}?
-        a.button(href='/books') Cancel  
+        a.button(href=`/books/${book.id}`) Cancel  
         input(type='submit', value="Delete Book")
