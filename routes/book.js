@@ -33,7 +33,6 @@ router.post(
       },
       order: [["createdAt", "DESC"]],
     });
-    console.log(books);
     if (books.length > 0) {
       res.render("results", {
         books,
@@ -41,7 +40,7 @@ router.post(
       });
     } else {
       const error = new Error(
-        "Sorry, the books matching your search were not found :("
+        "Sorry, the book(s) you're looking for are in another castle :("
       );
       res.render("results", {
         error,
